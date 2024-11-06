@@ -1,0 +1,101 @@
+Certainly! Below is a Python program that helps track and manage student grades. The program allows users to input grades for various subjects, calculates the average grade, and provides additional information such as letter grades and GPA.
+
+Here's the code:
+
+python
+def calculate_average(grades):
+    if not grades:
+        return 0
+    return sum(grades) / len(grades)
+
+def letter_grade(average):
+    if average >= 90:
+        return 'A'
+    elif average >= 80:
+        return 'B'
+    elif average >= 70:
+        return 'C'
+    elif average >= 60:
+        return 'D'
+    else:
+        return 'F'
+
+def gpa(average):
+    if average >= 90:
+        return 4.0
+    elif average >= 80:
+        return 3.0
+    elif average >= 70:
+        return 2.0
+    elif average >= 60:
+        return 1.0
+    else:
+        return 0.0
+
+def main():
+    grades = {}
+    
+    while True:
+        print("\nStudent Grade Tracker")
+        print("1. Input Grade")
+        print("2. Display Grades")
+        print("3. Calculate Average Grade")
+        print("4. Exit")
+        
+        choice = input("Select an option (1-4): ")
+        
+        if choice == '1':
+            subject = input("Enter the subject name: ")
+            try:
+                grade = float(input(f"Enter the grade for {subject}: "))
+                grades[subject] = grade
+                print(f"Grade {grade} for {subject} added successfully.")
+            except ValueError:
+                print("Invalid input. Please enter a valid number for the grade.")
+        
+        elif choice == '2':
+            if not grades:
+                print("No grades recorded yet.")
+            else:
+                print("\nGrades:")
+                for subject, grade in grades.items():
+                    print(f"{subject}: {grade}")
+        
+        elif choice == '3':
+            if not grades:
+                print("No grades available to calculate average.")
+            else:
+                average = calculate_average(list(grades.values()))
+                letter = letter_grade(average)
+                gpa_value = gpa(average)
+                print(f"\nAverage Grade: {average:.2f}")
+                print(f"Letter Grade: {letter}")
+                print(f"GPA: {gpa_value:.2f}")
+        
+        elif choice == '4':
+            print("Exiting the program.")
+            break
+        
+        else:
+            print("Invalid choice. Please select a valid option.")
+
+if __name__ == "__main__":
+    main()
+
+
+### Overview of the Program:
+1. *Input Grades*: The user can input grades for different subjects. The grades are stored in a dictionary (grades) where keys are subject names and values are their respective grades.
+2. *Display Grades*: The user can view all entered grades for the subjects.
+3. *Calculate Average Grade*: The program calculates the average of all grades, determines the corresponding letter grade, and provides a GPA based on the average.
+4. *Exit*: Users can exit the program.
+
+### Instructions to Run the Program:
+- Copy the code into a Python environment (e.g., IDE, Jupyter Notebook, or a Python script file).
+- Run the program, and follow the on-screen instructions to input grades, view certain statistics, or exit the program.
+
+### Additional Features:
+You can enhance this program by adding features such as:
+- Save/load grades from a file.
+- Add weightage for different subjects.
+- Provide options for more complex GPA calculations based on course credits.
+
